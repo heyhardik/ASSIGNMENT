@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+struct Time {
+    int hours, minutes, seconds;
+};
+
+struct Time calculateTimeDifference(struct Time startTime, struct Time endTime) {
+    struct Time difference;
+
+    int totalStartSeconds = startTime.hours * 3600 + startTime.minutes * 60 + startTime.seconds;
+    int totalEndSeconds = endTime.hours * 3600 + endTime.minutes * 60 + endTime.seconds;
+
+    int timeDiffSeconds = totalEndSeconds - totalStartSeconds;
+
+    difference.hours = timeDiffSeconds / 3600;
+    difference.minutes = (timeDiffSeconds % 3600) / 60;
+    difference.seconds = timeDiffSeconds % 60;
+
+    return difference;
+}
+
+int main() {
+    struct Time startTime = {5, 34, 21};
+    struct Time endTime = {6, 17, 10};
+
+    struct Time difference = calculateTimeDifference(startTime, endTime);
+
+    printf("Time difference: %d : %d : %d\n", difference.hours, difference.minutes, difference.seconds);
+
+    return 0;
+}
